@@ -6,6 +6,8 @@ function PlaylistMaker() {
   const [newPlaylistName, setNewPlaylistName] = useState('');
   // State to hold user's created playlists
   const [userPlaylists, setUserPlaylists] = useState([]);
+  // Track which playlist is expanded to show its songs
+  const [expandedPlaylistId, setExpandedPlaylistId] = useState(null);
 
   // Load playlists from Local Storage when the component mounts
   useEffect(() => {
@@ -78,9 +80,9 @@ function PlaylistMaker() {
             {userPlaylists.map((playlist) => (
               <div
                 key={playlist.id}
-                className="bg-gray-800 rounded-lg p-4 cursor-pointer hover:bg-gray-700 transition-colors duration-200 flex flex-col items-center text-center"
+                className={`bg-gray-800 rounded-lg p-4 cursor-pointer hover:bg-gray-700 transition-colors duration-200 flex flex-col items-center text-center ${expandedPlaylistId === playlist.id ? 'ring-2 ring-orange-500' : ''}`}
+                onClick={() => setExpandedPlaylistId(expandedPlaylistId === playlist.id ? null : playlist.id)}
               >
-                {/* Default or placeholder image for playlist if no custom image logic is added */}
                 <img
                   src={playlist.imageUrl || 'https://via.placeholder.com/150/663399/FFFFFF?text=My+Playlist'}
                   alt={playlist.name}
@@ -88,7 +90,27 @@ function PlaylistMaker() {
                 />
                 <h3 className="text-lg font-semibold truncate w-full px-2">{playlist.name}</h3>
                 <p className="text-sm text-gray-400">{playlist.songs.length} songs</p>
-                {/* Future: Add buttons to view/edit/delete playlist */}
+                {/* Show songs if this playlist is expanded */}
+                {expandedPlaylistId === playlist.id && (
+                  <div className="w-full mt-4 bg-gray-900 rounded p-3 text-left">
+                    <h4 className="font-semibold mb-2 text-orange-400">Songs:</h4>
+                    {playlist.songs.length === 0 ? (
+                      <p className="text-gray-400 text-sm">No songs in this playlist yet.</p>
+                    ) : (
+                      <ul className="space-y-2">
+                        {playlist.songs.map((song, idx) => (
+                          <li key={song.id || idx} className="flex items-center gap-2">
+                            <img src={song.album?.cover_small || '/placeholder.svg'} alt={song.title} className="w-8 h-8 rounded" />
+                            <div>
+                              <div className="text-white text-sm font-medium">{song.title || 'Unknown Title'}</div>
+                              <div className="text-gray-400 text-xs">{song.artist?.name || 'Unknown Artist'}</div>
+                            </div>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                )}
               </div>
             ))}
           </div>

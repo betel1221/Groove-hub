@@ -1,49 +1,73 @@
-// src/data/dummyData.js
-
-// --- Import Images from src/assets/images folder ---
-import img1 from '../assets/images/img1.jfif';
-import img2 from '../assets/images/img2.jfif';
-import img3 from '../assets/images/img3.jfif';
-import img4 from '../assets/images/img4.jfif';
-import img5 from '../assets/images/img5.jfif';
-import img6 from '../assets/images/img6.jfif';
-// You have img7.jfif, img8.jfif, img9.png but only 6 are needed for DUMMY_PLAYLISTS
-// If DUMMY_RELEASES (currently unused) were to be re-enabled and use these,
-// you would import img7, img8, img9 here too.
-
-// --- Import Audio files from src/assets/audio folder ---
-// (These are currently NOT used by DUMMY_PLAYLISTS, but would be for DUMMY_RELEASES if re-enabled)
-// import audioA from '../assets/audio/a.mp4';
-// import audioB from '../assets/audio/b.mp4';
-// import audioC from '../assets/audio/c.mp4';
-// import audioD from '../assets/audio/d.mp4';
-// import audioE from '../assets/audio/e.mp4';
-// import audioF from '../assets/audio/f.mp4';
-// import audioG from '../assets/audio/g.mp4';
-// import audioH from '../assets/audio/h.mp4';
-// import audioI from '../assets/audio/i.mp4';
-
-
 export const DUMMY_PLAYLISTS = [
-  { id: 'dummy-playlist-1', name: 'Chill Vibes', description: 'Relaxing tunes for winding down.', imageUrl: img1 },
-  { id: 'dummy-playlist-2', name: 'Morning Coffee', description: 'Acoustic tracks to start your day.', imageUrl: img2 },
-  { id: 'dummy-playlist-3', name: 'Workout Mix', description: 'High energy for your exercise routine.', imageUrl: img3 },
-  { id: 'dummy-playlist-4', name: 'Focus Flow', description: 'Instrumentals for concentration.', imageUrl: img4 },
-  { id: 'dummy-playlist-5', name: 'Evening Jazz', description: 'Smooth jazz for a relaxed evening.', imageUrl: img5 },
-  { id: 'dummy-playlist-6', name: 'Road Trip Jams', description: 'Sing-along classics for the open road.', imageUrl: img6 },
+  {
+    id: 1,
+    title: "Top Hits 2025",
+    description: "The hottest tracks of the year",
+    tracks: {
+      data: [
+        {
+          id: 1,
+          title: "Blinding Lights",
+          artist: { name: "The Weeknd" },
+          album: { title: "After Hours", cover_medium: "/placeholder.svg?height=200&width=200" },
+          duration: 200,
+          preview: "https://example.com/preview/blinding-lights.mp3",
+        },
+        {
+          id: 2,
+          title: "Watermelon Sugar",
+          artist: { name: "Harry Styles" },
+          album: { title: "Fine Line", cover_medium: "/placeholder.svg?height=200&width=200" },
+          duration: 174,
+          preview: "https://example.com/preview/watermelon-sugar.mp3",
+        },
+      ],
+    },
+  },
+  {
+    id: 2,
+    title: "Pop Favorites",
+    description: "Your favorite pop anthems",
+    tracks: {
+      data: [
+        {
+          id: 3,
+          title: "Levitating",
+          artist: { name: "Dua Lipa" },
+          album: { title: "Future Nostalgia", cover_medium: "/placeholder.svg?height=200&width=200" },
+          duration: 203,
+          preview: "https://example.com/preview/levitating.mp3",
+        },
+        {
+          id: 4,
+          title: "Good 4 U",
+          artist: { name: "Olivia Rodrigo" },
+          album: { title: "SOUR", cover_medium: "/placeholder.svg?height=200&width=200" },
+          duration: 178,
+          preview: "https://example.com/preview/good-4-u.mp3",
+        },
+      ],
+    },
+  },
 ];
 
-// --- IMPORTANT NOTE REGARDING DUMMY_RELEASES ---
-// This array is currently **NOT used** by your App.js for "New Releases,"
-// as "New Releases" are now fetched dynamically from the iTunes API.
-// You can remove or comment out this entire DUMMY_RELEASES export if it's no longer needed anywhere else.
-/*
-export const DUMMY_RELEASES = [
-  { id: 'dummy-release-1', title: 'New Age Anthem', artist: 'Future Echoes', imageUrl: img7, previewUrl: audioA },
-  { id: 'dummy-release-2', title: 'Silent Whispers', artist: 'Ambient Soundscapes', imageUrl: img8, previewUrl: audioB },
-  { id: 'dummy-release-3', title: 'Rhythmic Heartbeat', artist: 'Beat Masters', imageUrl: img9, previewUrl: audioC },
-  { id: 'dummy-release-4', title: 'Digital Dream', artist: 'SynthWave Collective', imageUrl: img1, previewUrl: audioD }, // Reusing images & audio
-  { id: 'dummy-release-5', title: 'Forest Lullaby', artist: 'Nature Sounds', imageUrl: img2, previewUrl: audioE },
-  { id: 'dummy-release-6', title: 'City Lights', artist: 'Urban Grooves', imageUrl: img3, previewUrl: audioF },
+export const DUMMY_ALBUMS = [
+  {
+    id: 1,
+    title: "After Hours",
+    artist: { name: "The Weeknd" },
+    cover_medium: "/placeholder.svg?height=200&width=200",
+  },
+  {
+    id: 2,
+    title: "Fine Line",
+    artist: { name: "Harry Styles" },
+    cover_medium: "/placeholder.svg?height=200&width=200",
+  },
+  {
+    id: 3,
+    title: "Future Nostalgia",
+    artist: { name: "Dua Lipa" },
+    cover_medium: "/placeholder.svg?height=200&width=200",
+  },
 ];
-*/

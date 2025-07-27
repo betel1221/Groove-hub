@@ -2,10 +2,14 @@
 export default {
   content: [
     "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
+    "./src/**/*.{js,jsx}", // .jsx is already included
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        accent: 'rgb(242,135,5)', // Now you can use bg-accent, text-accent, etc.
+      },
+    },
   },
   plugins: [],
 }

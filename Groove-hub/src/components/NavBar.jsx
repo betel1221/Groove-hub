@@ -1,35 +1,39 @@
-// src/components/NavBar.jsx
-import React from 'react';
-import { FaHome, FaSearch, FaPlusSquare } from 'react-icons/fa'; // Icons for Home, Search, Playlist Maker
+// src/components/Navbar.js
+import { Search, Home, User } from 'lucide-react';
 
-function NavBar({ currentView, onNavigate }) {
-  const navItems = [
-    { name: 'Home', icon: FaHome, view: 'home' },
-    { name: 'Search', icon: FaSearch, view: 'search' },
-    { name: 'Playlist Maker', icon: FaPlusSquare, view: 'playlistMaker' }, // Changed icon to FaPlusSquare
-  ];
-
+export default function Navbar({ currentPage, setCurrentPage }) {
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-gray-900 bg-opacity-90 backdrop-filter backdrop-blur-lg p-3 border-t border-gray-700 z-50">
-      <div className="flex justify-around items-center h-full max-w-lg mx-auto">
-        {navItems.map((item) => {
-          const Icon = item.icon; // Get the icon component
-          const isActive = currentView === item.view;
-          return (
+    <nav className="bg-black border-b border-gray-800 p-4">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center space-x-6">
+          <h1 className="text-2xl font-bold text-white">StreamFlow</h1>
+          <div className="hidden md:flex space-x-4">
             <button
-              key={item.name}
-              className={`flex flex-col items-center px-4 py-2 rounded-lg transition-colors duration-200
-                          ${isActive ? 'text-orange-500' : 'text-gray-400 hover:text-white'}`}
-              onClick={() => onNavigate(item.view)}
+              onClick={() => setCurrentPage('home')}
+              className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-colors ${
+                currentPage === 'home' ? 'bg-orange-500 text-black' : 'text-gray-300 hover:text-white hover:bg-gray-800'
+              }`}
             >
-              <Icon className="text-xl mb-1" />
-              <span className="text-xs font-medium">{item.name}</span>
+              <Home size={20} />
+              <span>Home</span>
             </button>
-          );
-        })}
+            <button
+              onClick={() => setCurrentPage('search')}
+              className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-colors ${
+                currentPage === 'search' ? 'bg-orange-500 text-black' : 'text-gray-300 hover:text-white hover:bg-gray-800'
+              }`}
+            >
+              <Search size={20} />
+              <span>Search</span>
+            </button>
+          </div>
+        </div>
+        <div className="flex items-center space-x-4">
+          <button className="p-2 rounded-full bg-gray-800 hover:bg-gray-700 transition-colors">
+            <User size={20} />
+          </button>
+        </div>
       </div>
     </nav>
   );
 }
-
-export default NavBar;
